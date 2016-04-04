@@ -1,1 +1,0 @@
-ALTER TABLE `users` ADD `facebook_id` VARCHAR(255) NOT NULL AFTER `distance`;

@@ -1,1 +1,0 @@
-ALTER TABLE `shared_deal` ADD `has_concluded` INT NOT NULL DEFAULT '0' AFTER `customer_status`;
