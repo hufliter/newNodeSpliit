@@ -1,0 +1,169 @@
+.container-term{
+        min-width: 100%;
+        min-height: 100%;
+        margin: -130px 0 0 0;
+        padding: 130px 260px 520px 260px;
+        min-width: 1024px;
+	    @media (max-width: $screen-lg) {
+	        margin: -130px * $percent-lg 0 0 0;
+	        padding: 130px * $percent-lg 260px * $percent-lg  520px * $percent-lg 260px * $percent-lg ;
+	    }
+	    @media (max-width: $screen-md) {
+	        margin: -130px * $percent-md 0 0 0;
+	        padding: 130px * $percent-md 260px * $percent-md  520px * $percent-md 260px * $percent-md ;
+	    }
+        h1{
+        	font-size: 90px;
+        	margin: 180px 0 180px 0;
+        	@media (max-width: $screen-lg) {
+        		font-size: 90px * $percent-lg;
+        		margin: 180px * $percent-lg 0 180px * $percent-lg 0;
+		    }
+		    @media (max-width: $screen-md) {
+        		font-size: 90px * $percent-md;
+        		margin: 180px * $percent-md 0 180px * $percent-md 0;
+		    }
+        }
+        h2{
+			font-size: 31px;
+			font-weight: 600;
+			line-height: 1.9;
+			@media (max-width: $screen-lg) {
+				font-size: 31px * $percent-lg;
+		    }
+		    @media (max-width: $screen-md) {
+				font-size: 31px * $percent-md;
+		    }
+        }
+        p{
+        	margin: 30px 0 100px 0;
+        	font-size: 31px;
+        	line-height: 1.9;
+        	@media (max-width: $screen-lg) {
+        		font-size: 31px * $percent-lg;
+        		margin: 30px * $percent-lg 0 100px * $percent-lg 0;
+		    }
+		    @media (max-width: $screen-md) {
+		    	font-size: 31px * $percent-md;
+	        	margin: 30px * $percent-md 0 100px * $percent-md 0;
+		    }
+        }
+
+}
+.footer{
+		min-width: 1024px;
+		background: #f4f8f9;
+		height: 420px;
+		width: 100%;
+		margin: -420px 0px 0 0px;
+		padding: 170px 260px 0 260px; 
+		@media (max-width: $screen-lg) {
+			height: 420px * $percent-lg;
+			margin: -420px * $percent-lg 0px 0 0px;
+			padding: 170px * $percent-lg 260px * $percent-lg 0 260px * $percent-lg; 
+		}
+		@media (max-width: $screen-md) {
+			height: 420px * $percent-md;
+			margin: -420px * $percent-md 0px 0 0px;
+			padding: 170px * $percent-md 260px * $percent-md 0 260px * $percent-md; 
+		}
+}
+.social-group{
+	float: left;
+	li{
+		float: left;
+		margin: 0 50px 0 0;
+		@media (max-width: $screen-lg) {
+			margin: 0 50px * $percent-lg 0 0;
+		}
+		@media (max-width: $screen-md) {
+			margin: 0 50px * $percent-md 0 0;
+		}
+	}
+}
+.contact-group{
+	float: left;
+	margin: 0 0 0 70px;
+	@media (max-width: $screen-lg) {
+		margin: 0 0 0 70px * $percent-lg;
+	}
+	@media (max-width: $screen-md) {
+		margin: 0 0 0 70px * $percent-md;
+	}
+	li{
+		float: left;
+		height: 30px;
+		border-left: 1px solid #aaaaaa;
+		line-height: 30px;
+		margin: 40px 0 0 0;
+		@media (max-width: $screen-lg) {
+			height: 30px * $percent-lg;
+			line-height: 30px * $percent-lg;
+			margin: 40px * $percent-lg 0 0 0;
+		}
+		@media (max-width: $screen-md) {
+			height: 30px * $percent-md;
+			line-height: 30px * $percent-md;
+			margin: 40px * $percent-md 0 0 0;
+		}
+		&:first-child{
+			border: none;
+		}
+		a{
+			display: inline-block;
+			font-size: 26px;
+			color: #aaaaaa;
+			margin: 0 20px;
+			@media (max-width: $screen-lg) {
+				font-size: 26px * $percent-lg;
+				margin: 0 20px * $percent-lg;
+			}
+			@media (max-width: $screen-md) {
+				font-size: 26px * $percent-md;
+				margin: 0 20px * $percent-md;
+			}
+		}
+	}
+}
+.social-icon{
+	display: block;
+	width: 100px;
+	height: 100px;
+	background: no-repeat center center;
+	background-size: cover;
+	@media (max-width: $screen-lg) {
+		width: 100px * $percent-lg;
+		height: 100px * $percent-lg;
+	}
+	@media (max-width: $screen-md) {
+		width: 100px * $percent-md;
+		height: 100px * $percent-md;
+	}
+}
+.social-facebook{
+	background-image: url(../images/facebook@2x.png);
+}
+.social-twitter{
+	background-image: url(../images/twitter@2x.png);
+}
+.social-instagram{
+	background-image: url(../images/instagram@2x.png);
+}
+.footer-logo{
+	float: right;
+	width: 170px;
+	height: 50px;
+	background: url(../images/logo_footer@2x.png) no-repeat center center;
+	background-size: cover;
+	margin: 40px 0 0 0;
+	@media (max-width: $screen-lg) {
+		width: 170px * $percent-lg;
+		height: 50px * $percent-lg;
+		margin: 40px * $percent-lg 0 0 0;
+	}
+	@media (max-width: $screen-md) {
+		width: 170px * $percent-md;
+		height: 50px * $percent-md;
+		margin: 40px * $percent-md 0 0 0;
+	}
+}

@@ -1,0 +1,146 @@
+{
+  "name": "Deal",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mysql": {
+    "schema": "spliit",
+    "table": "deal"
+  },
+  "properties": {
+    "idShop": {
+      "type": "String",
+      "required": false
+    },
+    "createdDate": {
+      "type": "Date",
+      "required": false
+    },
+    "createdBy": {
+      "type": "String",
+      "required": false
+    },
+    "title": {
+      "type": "String",
+      "required": false
+    },
+    "description": {
+      "type": "String",
+      "required": true
+    },
+    "typeDeal": {
+      "type": "Number",
+      "required": false
+    },
+    "promo": {
+      "type": "String",
+      "required": true
+    },
+    "startDate": {
+      "type": "Date",
+      "required": false
+    },
+    "endDate": {
+      "type": "Date",
+      "required": true
+    },
+    "category": {
+      "type": "String",
+      "required": true
+    },
+    "address": {
+      "type": "String",
+      "required": true
+    },
+    "location": {
+      "type": "GeoPoint",
+      "required": false
+    },
+    "latitude": {
+      "type": "Number",
+      "required": false
+    },
+    "longitude": {
+      "type": "Number",
+      "required": false
+    },
+    "brand": {
+      "type": "String",
+      "required": true
+    },
+    "storeName": {
+      "type": "String",
+      "required": false
+    },
+    "active": {
+      "type": "Number",
+      "required": false
+    },
+    "nbRequiredCust": {
+      "type": "Number",
+      "required": true
+    },
+    "lastModifiedDate": {
+      "type": "Date",
+      "required": false
+    },
+    "lastModifiedUser": {
+      "type": "String",
+      "required": false
+    },
+    "urlImage": {
+      "type": "String",
+      "required": true
+    },
+    "archived": {
+      "type": "Number",
+      "required": false
+    },
+    "is_system": {
+      "type": "Number",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sharedDeals": {
+      "type": "hasMany",
+      "model": "SharedDeal",
+      "foreignKey": "idDeal"
+    },
+    "dealGroups": {
+      "type": "hasOne",
+      "model": "DealGroup",
+      "foreignKey": "idDeal"
+    },
+    "getCategory": {
+      "type": "belongsTo",
+      "model": "Category",
+      "foreignKey": "category"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "ADMIN",
+      "permission": "ALLOW",
+      "property": "delete"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,182 @@
+<div class="container" ng-show="true" resize mainfullscreen>
+  <div class="deals-filter-bar">
+    <header class="clearfix">
+      <h1>Deals</h1>
+      <div class="deals-category-filter">
+        <span class="category-menu dropdown-toggle" data-toggle="dropdown" data-ng-click="initScroll()">
+          <span class="cross-menu hide" directclosecross></span>
+          <span class="category-filter-menu" directfiltercate></span>
+        </span>
+
+        <span class="category-name">{{'CLOTHES'|translate}}</span>
+
+      </div>
+      <!-- <div class="deals-filter">
+        <div class="btn-group">
+          <span class="deals-filter-item dropdown-toggle" data-toggle="dropdown"><span class="arrow-bottom" ></span>{{'ALL'|translate}}</span>
+          <ul class="dropdown-menu" role="menu" >
+              <li class="menu-mark" directfilteroption ng-repeat="filterOpt in filterOptions" ng-click="getFilterOpt(filterOpt.id)" >{{filterOpt.keyTranslate|translate}}</li>
+          </ul>
+        </div>
+      </div> -->
+
+    </header>
+    <div class="filter-category hide" ng-scrollbar rebuild-on="rebuild:category">
+        <ul class="deal-category"  >
+        <li ng-repeat="cate in categoryData" class="category-filter" style="background-image:url('{{cate.urlImage}}')" selectedfiltercategory ng-click="getFilterCateOpt(cate.id)">{{cate.label|translate}}<span class="icon-active icon_check_alt"></span></li>
+         </ul>
+    </div>
+    <div class="wrap-deal-results">
+        <div class="deal-filter-results" >
+          <div infinite-scroll='deals.nextPage()' infinite-scroll-disabled='deals.busy' infinite-scroll-distance='1' infinite-scroll-container='".deal-filter-results"'>
+           <ul class="deals-specific-shop">
+             <li ng-repeat="deal in deals.items" class="deal-result deal-furniture" ng-style="{ 'background-image':'url({{storeImageUrl + deal.urlImage}})'}" ng-click="viewDeal(deal.id)"> 
+               <h2>{{deal.brand}}</h2>
+               <h3>{{deal.category_name|translate}}</h3>
+                <span class="promotion-discount" ng-if="deal.promo">
+                  <span class="promotion-discount-item">
+                    <span class="up-to">UP TO</span>{{deal.promo}}<!-- <span class="pircent">%</span> -->
+                  </span>
+                </span>
+             </li>
+           </ul>
+            <div ng-show="deals.busy" ng-hide="deals.isFinish == 1" class="text-center"><img src="/images/facebook.svg" alt=""></div>
+           </div>
+       </div> 
+    </div>
+  </div>
+  <div class="content">
+  <div id="map_canvas">
+    <ng-map zoom="{{mapOptions.zoom}}" class="angular-google-map-container">
+      <custom-marker position="[{{deal.coords.latitude}}, {{deal.coords.longitude}}]" ng-repeat="deal in deals.items" data="{{deal}}" >
+        <div class="background-marker" ng-click="viewDeal(deal.id)"> </div>
+        <div style="background-image: url({{storeImageUrl + deal.urlImage}}) !important;" ng-click="viewDeal(deal.id)"> </div>
+        <div class="marker-rotate" ng-click="viewDeal(deal.id)"> </div>
+        <div ng-class="deal.focus" ng-click="viewDeal(deal.id)"> </div>
+        <span class="marker-item-title" ng-click="viewDeal(deal.id)">{{deal.brand}}</span>
+      </custom-marker> 
+    </ng-map>
+    <div id="list_overlapping_hoops" ng-show="showClusterBox" class="white-popup">
+        <span class="cancel-button" ng-click="showClusterBox = !showClusterBox" role="button" tabindex="0"></span>
+        <ul id="list_overlapping_hoops_content" >
+          <li class="deal_details" ng-repeat="deal in sameMarker" ng-style="{ 'background-image':'url({{deal.urlImage}})'}">
+            <a class="pull-left" ng-click="viewDeal(deal.id)">{{deal.brand}}</a>
+          </li>
+        </ul>
+    </div>
+  </div>
+    <div class="deals-corousel">
+      <div class="deal">
+        <uib-carousel interval="carousel.interval" no-wrap="carousel.nowrap" no-transition="carousel.transition" >
+          <uib-slide ng-repeat="deal in deals.items" active="deal.activeSlide">
+            <div  class="promotion-view" style="background-image: url({{storeImageUrl + deal.urlImage}}) !important;" ng-style="{ height: {{promotionViewHeight}}+px}">
+              <span class="promotion-discount" ng-if="deal.promo">{{deal.promo}}<!-- <span class="pircent">%</span> -->
+              </span>
+              <!--ul class="deal-social">
+                  <li ><a href="" class="btn-facebook"><span>{{'SHARE_ON'|translate}} <b>Facebook</b></span></a></li>
+                  <li ><a href="" class="btn-twitter"><span>{{'SHARE_ON'|translate}} <b>Twitter</b></span></a></li>
+              </ul-->
+              <!-- AddThis Button BEGIN -->
+              <div data-addthis-toolbox data-url="http://spliit-dev.herokuapp.com" data-title="{{deal.title}}" data-description="{{deal.title}}" id="bp-{{deal.id}}" 
+                    class="deal-social addthis_toolbox addthis_default_style addthis_0x0_style">
+                <li><a href class="btn-facebook addthis_button_facebook"><span>{{'SHARE_ON'|translate}} <b>Facebook</b></span></a></li>
+                <li><a href class="btn-twitter addthis_button_twitter"><span>{{'SHARE_ON'|translate}} <b>Twitter</b></span></a></li>
+              </div>
+            </div>
+            <div class="deal-content clearfix">
+              <h1>{{deal.brand}}</h1>
+              <ul class="members" >
+                <li  ng-repeat="group_member in deal.group | limitTo: deal.dealLimit" ng-init="deal.group.length <= deal.nbRequiredCust && deal.group.length ? deal.dealLimit = deal.nbRequiredCust : deal.dealLimit = deal.nbRequiredCust - 1;">
+                    <span class="member-user"
+                    ng-if="group_member.users.facebookId" 
+                    ng-class="{'no-pp': group_member.users.avatar == ''}"
+                    ng-style="{ 'background-image':'url({{group_member.users.avatar}})'}">
+                      <span class="user-info">
+                        <span class="user-name">{{group_member.users.firstName}}</span>
+                        <span class="user-rating">
+                          <div starrating rating-value="group_member.users.mark" max="ratings.max"></div>
+                        </span>
+                        <span class="user-reviews">{{group_member.users.mark}}/{{ratings.max}} from {{group_member.total_user_reviews}} people</span>       
+                      </span>
+                    </span>
+                    <span class="member-user" 
+                    ng-if="!group_member.users.facebookId" 
+                    ng-class="{'no-pp': group_member.users.avatar == ''}"
+                    ng-style="{ 'background-image':'url({{storeImageUrl + group_member.users.avatar}})'}">
+                      <span class="user-info">
+                        <span class="user-name">{{group_member.users.firstName}}</span>
+                        <span class="user-rating">
+                          <div starrating rating-value="group_member.users.mark" max="ratings.max"></div>
+                        </span>
+                        <span class="user-reviews">{{group_member.users.mark}}/{{ratings.max}} from {{group_member.total_user_reviews}} people</span>       
+                      </span>
+                    </span>
+                </li>
+                <!-- <li><span class="member-user no-pp"></span></li> -->
+                <li ng-show="!deal.group.length"><span class="member-user no-pp"></span></li>
+                <li ng-show="deal.group.length > deal.nbRequiredCust" class="dropup" ng-click="setWidthMenu($event, deal.group.length)">
+                  <span class="member-user dots dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                  </span>
+                  <ul class="dropdown-menu dropdown-menu-right" ng-style="{ width: widthDropMenu, height: heightDropMenu}">
+                     <li  ng-repeat="group_member in deal.group">
+                        <span class="member-user " 
+                        ng-class="{'no-pp': group_member.users.avatar == ''}"
+                        ng-style="{ 'background-image':'url({{group_member.users.avatar}})'}">
+                          <span class="user-info">
+                            <span class="user-name">{{group_member.users.firstName}}</span>
+                            <span class="user-rating">
+                              <div starrating rating-value="group_member.users.mark" max="ratings.max"></div>
+                            </span>
+                            <span class="user-reviews">{{group_member.users.mark}}/{{ratings.max}} from {{group_member.total_user_reviews}} people</span>       
+                          </span>
+                        </span>
+                      </li>
+                  </ul>
+                </li>
+                <div class="members-size" >{{deal.group.length}}/{{deal.nbRequiredCust}}</div>
+              </ul>
+              <div class="deal-description">
+                <h2>Description</h2>
+                <p>{{deal.description}}</p>
+              </div>
+              <div class="deal-other">
+                <h2>{{'ADRESS_LABEL'|translate}}</h2>
+                <p>{{deal.address}}</p>
+                <!--p>Limited offer!</p-->
+              </div>
+              <footer>
+                <button class="btn btn-join"
+                  ng-if="is_logged"
+                  ng-click="joinDeal(deal.id)" >{{ 'BTN_JOIN_DEAL' | translate }}</button>
+                <button class="btn btn-join"
+                  style="background:#c5c5c5" 
+                  ng-if="!is_logged"
+                  ng-disabled="!is_logged"
+                  ng-click="joinDeal(deal.id)" >{{ 'BTN_JOIN_DEAL' | translate }}</button>
+                <span class="deal-expires">{{ deal.endDate | dateFilter}}</span>
+                <div class="local-to-user" ng-click="map_focus($index)"></div>
+                <div class="report-deal"
+                ng-click="openReport()"
+                ng-hide="!is_logged"></div>
+              </footer>
+              <div class="btn-report-deal" ng-class="{'hide':!removeHide}">
+                <p ng-show="report_success == 1"
+                style="color:maroon;">{{'ERR_DEAL_HAS_REPORT'|translate}}</p>
+                <p ng-show="report_success == 2" style="color:#5cb85c;">{{'MSG_REPORT_POST'|translate}}</p>
+                <p ng-show="report_success == 0">{{'REPORT_DEAL_TEXT'|translate}}</p>
+                <button class="btn btn-join-report" 
+                ng-click="dealReport(deal.id)" ng-hide="report_success != 0">{{'BTN_YES'|translate}}</button>
+                <span class="cross-menu" ng-click="closeReport()"></span>
+              </div>
+            </div>
+          </uib-slide>
+        </uib-carousel>
+      </div>
+    </div>
+    <!-- <div  id="owl-carousel"  class="deals-corousel owl-carousel clearfix"> -->
+      
+    <!--      {"id_deal":"1","created_date":"2015-08-14 00:00:00","title":"Jean","active":"1","description":"Celio : Un jean acheté le second offert","type_deal":"0","promo":"","start_date":"2015-10-01","end_date":"2015-10-31","brand":"Celio","store_name":"Celio Chatelet","nb_required_cust":3,"category":1,"urlImage":"http://spliit.net/rest-prod/img/deals/celio.jpg","location":"48.890757,2.237962","address":"68 Rue Jean Jaurès 92800 Puteaux","longitude":2.237962,"latitude":48.890757,"id_shop":22,"group":[{"group_number":"1","status":"INCOMPLETE","customer_status":"0","id_cust":"17"}]}
+ 
+    </div-->
+  </div>
+</div>

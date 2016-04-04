@@ -1,0 +1,1 @@
+ALTER TABLE `shared_deal` ADD `has_reviewed` INT NOT NULL DEFAULT '0' AFTER `has_concluded`;

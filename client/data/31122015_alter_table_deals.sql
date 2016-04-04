@@ -1,0 +1,1 @@
+ALTER TABLE `deal` ADD `archived` TINYINT NOT NULL DEFAULT '0' AFTER `url_image`;

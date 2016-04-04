@@ -1,0 +1,46 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "spliit_mongo",
+    "name": "db",
+    "connector": "mongodb"
+  },
+  "mongodb_dev": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "spliit_mongo",
+    "name": "mongodb_dev",
+    "connector": "mongodb"
+  },
+  "emailds": {
+    "name": "emailds",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": false,
+        "port": 587,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "elinext.php@gmail.com",
+          "pass": "AKIAJ3BOYCTMIXD3J4AQ"
+        }
+      }
+    ]
+  },
+  "myfileds": {
+    "name": "myfileds",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./uploads",
+    "maxFileSize": "52428800",
+    "allowedContentTypes": [
+      "image/png",
+      "image/jpeg"
+    ]
+  }
+}

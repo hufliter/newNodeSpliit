@@ -1,0 +1,119 @@
+.container-contact{
+        min-width: 1024px;
+        text-align: center;
+        width: 100%;
+        min-height: 100%;
+        margin: -130px 0 0 0;
+        padding: 130px 260px 520px 260px;
+        @media (max-width: $screen-lg) {
+            margin: -130px * $percent-lg 0 0 0;
+            padding: 130px * $percent-lg 260px * $percent-lg  520px * $percent-lg 260px * $percent-lg ;
+        }
+        @media (max-width: $screen-md) {
+            margin: -130px * $percent-md 0 0 0;
+            padding: 130px * $percent-md 260px * $percent-md  520px * $percent-md 260px * $percent-md ;
+        }
+        .contact-send{
+            padding: 0;
+        }
+        h1{
+            text-align: left;
+            font-size: 90px;
+            margin: 180px 0 180px 0;
+            @media (max-width: $screen-lg) {
+                font-size: 90px * $percent-lg;
+                margin: 180px * $percent-lg 0 180px * $percent-lg 0;
+            }
+            @media (max-width: $screen-md) {
+                font-size: 90px * $percent-md;
+                margin: 180px * $percent-md 0 180px * $percent-md 0;
+            }
+        }
+        p{
+            margin: 0;
+            font-size: 31px;
+            width: 100%;
+            padding: 0 400px;
+            line-height: 1.6;
+            @media (max-width: $screen-lg) {
+                            padding: 0 400px * $percent-lg;
+                font-size: 31px * $percent-lg;
+            }
+            @media (max-width: $screen-md) {
+                            padding: 0 390px * $percent-md;
+                font-size: 31px * $percent-md;
+            }
+        }
+
+}
+.contact-step-two{
+    h1{
+        margin: 180px 0 320px 0;
+        @media (max-width: $screen-lg) {
+            margin: 180px * $percent-lg 0 320px * $percent-lg 0;
+        }
+        @media (max-width: $screen-md) {
+            margin: 180px * $percent-md 0 320px * $percent-md 0;
+        }
+        p{
+            font-size: 28px;
+            @media (max-width: $screen-lg) {
+                font-size: 28px * $percent-lg;
+            }
+            @media (max-width: $screen-md) {
+                font-size: 28px * $percent-md;
+            }
+        }
+    }
+}
+.contact-send{
+        width: 770px;
+        margin: 100px 0 300px;
+        @media (max-width: $screen-lg) {
+            margin: 100px * $percent-lg 0 300px * $percent-lg;
+            width: 770px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+            margin: 100px * $percent-md 0 300px * $percent-md;
+            width: 770px * $percent-md;
+        }
+    textarea{
+        width: 770px;
+        height: 360px;
+        padding: 20px 70px 20px 70px;
+        border-radius: 50px;
+        font-size: 32px;
+        @media (max-width: $screen-lg) {
+            width: 770px * $percent-lg;
+            height: 360px * $percent-lg;
+            padding: 20px * $percent-lg 70px * $percent-lg 20px * $percent-lg 70px * $percent-lg;
+            border-radius: 50px * $percent-lg; 
+            font-size: 32px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+            width: 770px * $percent-md;
+            height: 360px * $percent-md;
+            padding: 20px * $percent-md 70px * $percent-md 20px * $percent-md 70px * $percent-md;
+            border-radius: 50px * $percent-md; 
+            font-size: 32px * $percent-md;
+        }
+    }
+}
+.contact-plane{
+    margin: 100px 0 440px 0;
+    display: inline-block;
+    width: 510px;
+    height: 470px;
+    background: url(../images/plane@2x.png) no-repeat center center;
+    background-size: cover;
+    @media (max-width: $screen-lg) {
+        margin: 100px * $percent-lg 0 440px * $percent-lg 0;
+        width: 510px * $percent-lg;
+        height: 470px * $percent-lg;
+    }
+    @media (max-width: $screen-md) {
+        margin: 100px * $percent-md 0 440px * $percent-md 0;
+        width: 510px * $percent-md;
+        height: 470px * $percent-md;
+    }
+}

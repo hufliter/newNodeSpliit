@@ -1,0 +1,1 @@
+ALTER TABLE `shared_deal` ADD `archive` INT NOT NULL DEFAULT '0' AFTER `has_reviewed`;

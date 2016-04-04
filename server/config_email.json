@@ -1,0 +1,38 @@
+{
+    "phase_config": {
+        "pending": {
+            "name":"Pending",
+            "current_phase":"Pending",
+            "next_phase":"Confirmation",
+            "message":"Congrate! you have passed to Confirmation phase"
+        },
+        "confirmation": {
+            "name":"Confirmation",
+            "current_phase":"Confirmation",
+            "next_phase":"In Progress",
+            "message":"Congrate! you have passed to In Progress phase"
+        },
+        "in_progress": {
+            "name":"In Progress",
+            "current_phase":"In Progress",
+            "next_phase":"Ended",
+            "message":"Congrate! you have passed to Ended phase"
+        },
+        "ended": {
+            "name":"Ended",
+            "current_phase":"Ended",
+            "next_phase":"Finish",
+            "message":"Congrate! Your deal has been ended. Some awesome deals around, keep searching"
+        },
+        "head":"Congrate! You have reach To New Phase",
+        "noreply": "noreply@spliit.net",
+        "send_from": "admin@spliit.net"
+    },
+    "contact_mail_config": {
+        "head": "New Email Contact From Spliiter",
+        "toAdmin": "tuongthang.phan@elinext.com"
+    },
+    "reset_password_email": {
+        "head": "Reset Password Confirmation"
+    }
+}

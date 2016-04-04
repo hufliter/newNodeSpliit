@@ -1,0 +1,104 @@
+<div class="container-contact" ng-init="contactSend = false" >
+<div class="contact-step-one"  ng-class="{'hide': contactSend}">
+	<h1>{{'CONTACT_US'|translate}}</h1>
+	<p>{{'CONTACT_PARAGRAPH_1'|translate}}</p> 
+<p>{{'CONTACT_PARAGRAPH_2'|translate}}</p>
+    <div class="contact-send">
+            <form 
+            	name="contactFrm"  
+            	novalidate
+            	ng-submit="contactFrm.$valid && sendContact()">
+                <div 
+                class="form-group"
+                ng-class="{ 'has-error': contactFrm.name.$touched && contactFrm.name.$invalid }">
+                    <label>Name</label>
+                    <input 
+                    type="text" 
+                    name="name" 
+                    class="form-control" 
+                 	placeholder="{{'NAME'|translate}}"
+                 	ng-model="contact.name"
+                 	ng-required="true">     
+                </div>
+                <div
+                    class="help-block" 
+                    ng-messages="contactFrm.name.$error" 
+                    ng-show="contactFrm.name.$touched"
+                    role="alert"
+                    style="color:maroon"
+                    >
+                    <div ng-message="required" >{{'ERR_NAME_REQUIRED'|translate}}</div>
+                </div>
+
+                <div 
+                	class="form-group"
+                	ng-class="{ 'has-error': contactFrm.email.$touched && contactFrm.email.$invalid }">
+                    <label>Email</label>
+                    <input 
+                    type="email" 
+                    name="email"  
+                    class="form-control" 
+                 	placeholder="Email"
+                 	ng-model="contact.email"
+                 	ng-required="true"
+                 	ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">     
+                </div>
+                <div
+                    class="help-block" 
+                    ng-messages="contactFrm.email.$error" 
+                    ng-show="contactFrm.email.$touched"
+                    role="alert"
+                    style="color:maroon"
+                    >
+                    <div ng-message="required" >{{'ERR_EMAIL_REQUIRED'|translate}}</div>
+                    <div ng-message="pattern" >{{'ERR_EMAIL_FORMAT'|translate}}</div>
+                </div>
+
+                <div 
+                	class="form-group"
+                	ng-class="{ 'has-error': contactFrm.message.$touched && contactFrm.message.$invalid }">
+				  <label for="message">message</label>
+				  <textarea 
+				  class="form-control"
+				  name="message" 
+				  placeholder="Message"
+				  ng-model="contact.message"
+				  ng-required="true"></textarea>
+				</div>
+				<div
+                    class="help-block" 
+                    ng-messages="contactFrm.message.$error" 
+                    ng-show="contactFrm.message.$touched"
+                    role="alert"
+                    style="color:maroon" >
+                    <div ng-message="required" >{{'ERR_MESSAGE_REQUIRED'|translate}}</div>
+                </div>
+
+				<div class="form-group">
+                    <button type="submit" class="btn btn-contact-send">Send</button>
+                </div>
+            </form>
+
+    </div>
+</div>
+<div class="contact-step-two" ng-class="{'hide': !contactSend}">
+	<h1>{{'CONTACT_US'|translate}}</h1>
+	<p>{{'CONTACT_SEND_OK'|translate}}</p>
+	<p>{{'CONTACT_SEND_MSG'|translate}}</p>
+	<div class="contact-plane"></div>
+</div>
+</div>
+
+<footer class="footer">
+	<ul class="social-group">
+		<li><a href="" class="social-icon social-facebook"><span></span></a></li>
+		<li><a href="" class="social-icon social-twitter"></a></li>
+		<li><a href="" class="social-icon social-instagram"></a></li>
+	</ul>
+	<ul class="contact-group">
+		<li><a href="#/contact">{{'CONTACT_US'|translate}}</a></li>
+		<li><a href="#/term">{{'TERM_OF_USE'|translate}}</a></li>
+		<li><a href="">{{"RECRUITMENT"|translate}}</a></li>
+	</ul>
+	<div class="footer-logo"></div>
+</footer>

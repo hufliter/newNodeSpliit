@@ -1,0 +1,168 @@
+<div class="container" ng-controller="ProfileCtrl" ng-show="true" resize >
+    <section class="profile-page clearfix" >
+      <div class="left-sidebar">
+            <div class="header-sidebar clearfix" >
+                <div ng-repeat="profile in profiles">
+                    <div 
+                    class="user-avatar" 
+
+                     >
+                    <form name="uploadFrm" novalidate enctype="multipart/form-data">  
+                       <div class="form-group upload-file" ng-style="{ 'background':'rgba(0, 0, 0, 0.3) url({{avatar}}) no-repeat center center', 'background-size': 'cover'}">
+                            <label>File</label>
+                            <input 
+                            type="file" 
+                            name="image" 
+                            ng-model="image" 
+                            class="form-control" 
+                            ngf-select="upload(image)" 
+                            ngf-pattern="'image/*'"
+                            accept="image/*" >
+                        </div>
+                    </form>
+                    </div>
+                    <h1>{{profile.firstName}}</h1>
+                    <!-- Directive user rating -->
+                    <span class="user-rating">
+                        <div starrating rating-value="profile.mark" max="ratings.max"></div>
+                    </span>
+                    <!-- Directive rating End -->
+                    <span class="user-reviews">{{countReviews}} {{'REVIEWS'|translate}}  |  {{profile.mark}} {{'OUTOF'|translate}} {{ratings.max}}</span>
+             </div>   
+            </div>
+            <div class="list-reviews clearfix" fullsidebar>
+                <ul class="scrolllist" ng-scrollbar rebuild-on="rebuild:profilelistreport">
+                    <li ng-repeat="review in reviews">
+                        <span class="user-avatar" ng-style="!review.facebookId && {'background-image':'url({{urlReviewAvatar + review.user_url_image}})'} || {'background-image':'url({{review.user_url_image}})'}"></span>
+                        <h2>{{review.user_first_name}}</h2>
+                        <span class="last-online">2h ago</span>
+                         <span class="user-rating">
+                            <div starrating rating-value="review.mark" max="ratings.max"></div>
+                        </span>
+                        <p>{{review.comments}}</p>
+                    </li>
+                    <li ng-hide="reviews.length" class="no-rewiews">{{'NO_REVIEWS'|translate}}</li>
+                </ul>   
+            </div>
+        </div>
+        <div class="content content-profile clearfix">
+            <h1>{{'SETTINGS'|translate}}</h1>
+            <div class="right-logaut">
+                <a href="#/logout" class="btn btn-logout">{{'LOGOUT'|translate}}</a>
+            </div>
+            
+            <p>{{'PROFILE_PHONE_TEXT'|translate}}</p>
+            <div class="enter-phone-form-profile">
+                <form name="phoneFrm" ng-submit="phoneFrm.$valid && sendPhone()">
+                    <div class="form-group phone-number-valid-form no-change">
+                        <label>Phone</label>      
+                        <input type="tel" class="form-control phone-number-valid" ng-model="mobileNumber"  phonenumbervalid mobile-number="mobileNumber">  
+                        <span  class="icon-valid-number icon_check_alt hide"></span>        
+                        <span  class="icon-valid-number icon_error-circle icon-alert hide"></span>  
+                        <button type="submit" id="btnSendPhone" class="btn-send hide" >SEND</button>
+                    </div>  
+                </form>
+            </div>
+            <div class="profile-change">
+            <!-- User profile setting -->
+                <form name="settimgsFrm" novalidate 
+                ng-submit="settimgsFrm.$valid && saveChangedProfile()">
+                    <div 
+                    class="form-group" 
+                    ng-class="{ 'has-error': settimgsFrm.name.$touched && settimgsFrm.name.$invalid }">
+                        <label>Name</label>
+                        <input 
+                        type="text" 
+                        name="name" 
+                        ng-model="full_name"
+                        class="form-control" 
+                        placeholder="Name"
+                        ng-required="true"
+                        ng-minlength="5"
+                        ng-maxlength="50"
+                        >
+                    </div>
+                    <div
+                    class="help-block" 
+                    ng-messages="settimgsFrm.name.$error" 
+                    ng-show="settimgsFrm.name.$touched"
+                    role="alert"
+                    style="color:maroon"
+                    >
+                        <div ng-message="required" >{{'ERR_NAME_REQUIRED'|translate}}</div>
+                        <div ng-message="minlength" >Name is too short</div>
+                        <div ng-message="maxlength" >Name is too long</div>
+                    </div>
+
+                    
+                    <div 
+                    class="form-group"
+                    ng-class="{ 'has-error': settimgsFrm.country.$touched && settimgsFrm.country.$invalid }"
+                    >
+                        <label>Country</label>
+                        <input 
+                        type="text" 
+                        name="country" 
+                        ng-model="country" 
+                        class="form-control" 
+                        placeholder="Country"
+                        ng-required="true"
+                        ng-minlength="2"
+                        ng-maxlength="20"
+                        >     
+                    </div>
+                    <div
+                    class="help-block" 
+                    ng-messages="settimgsFrm.country.$error" 
+                    ng-show="settimgsFrm.country.$touched"
+                    role="alert"
+                    style="color:maroon"
+                    >
+                        <div ng-message="required" >Country is required</div>
+                        <div ng-message="minlength" >Country value is too short</div>
+                        <div ng-message="maxlength" >Country value is too long</div>
+                    </div>
+
+
+                    <div 
+                    class="form-group"
+                    ng-class="{ 'has-error': settimgsFrm.email.$touched && settimgsFrm.email.$invalid }"
+                    >
+                        <label>Email</label>
+                        <input 
+                        type="text" 
+                        name="email" 
+                        ng-model="email" 
+                        class="form-control" 
+                        placeholder="Email"
+                        ng-required="true"
+                        ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                        >     
+                    </div>
+                    <div
+                    class="help-block" 
+                    ng-messages="settimgsFrm.email.$error" 
+                    ng-show="settimgsFrm.email.$touched"
+                    role="alert"
+                    style="color:maroon"
+                    >
+                        <div ng-message="required" >{{'ERR_EMAIL_REQUIRED'|translate}}</div>
+                        <div ng-message="pattern" >{{'ERR_EMAIL_FORMAT'|translate}}</div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button 
+                        type="submit" 
+                        class="btn btn-change" 
+                        >{{'PROFILE_SAVE_BTN'|translate}}</button>
+                    </div>
+                </form>
+            <!-- End user profile -->
+
+                <a href="#/term" class="terms">{{'TERMS_PRIVACY'|translate}}</a>
+            </div>
+
+        </div>  
+    </section>
+</div>

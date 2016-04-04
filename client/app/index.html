@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Spliit</title>
+    <meta name="description" content="">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/jquery.scrollbar/jquery.scrollbar.css" />
+    <link rel="stylesheet" href="bower_components/ng-scrollbar/dist/ng-scrollbar.css" />
+    <link rel="stylesheet" href="bower_components/intl-tel-input/build/css/intlTelInput.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+  </head>
+  <body ng-app="webApp"  data-ng-class="{'modal-review': modalReview}" ng-click="listResult = false">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <header class="header" ng-controller="HeaderCtrl" resize>
+            <a href="#/" class="logo">
+            </a>
+            <div class="search">
+              <span class="icon-search"></span>
+              <!-- ng-blur="listResult=false" -->
+              <input type="text" 
+              class="form-control" 
+              name="search"
+              ng-model="search"
+              ng-change="searchChanged()"
+              AUTOCOMPLETE="off"
+              placeholder="{{'SEARCH_TEXT_HOLDER'|translate}}...">
+              <nav class="search-results"  ng-class="{'hide': !listResult}" ng-click="closeList()" ng-cloak>
+                 <ul class="scrolllist" ng-scrollbar rebuild-on="rebuild:search">
+                      <!-- <li class="result-bag">
+                        <div class="result-search">Paris <span>Saint-Germain Centre Commerc...</span>
+                        <p>13 Rue d’Amsterdam, 75008 Paris, France</p></div>
+                      </li> -->
+                      <!-- <li class="result-search-item" ng-repeat="dataResult in searchResult ">
+                        <div class="result-search">{{dataResult.brand}} <span>{{dataResult.description}}</span></div>
+                      </li> -->
+                      <li class="result-search-item" ng-repeat="dataResult in searchResult | filter:search" ng-click="viewDeal(dataResult.id)" ng-if="isSuccess">
+                        <div class="result-search" >{{dataResult.brand}} <span>{{dataResult.description}}</span></div>
+                      </li>
+                      <li ng-if="!isSuccess">
+                        <div class="result-search" >{{'ERR_BRAND_NOT_FOUND'|translate}}</div>
+                      </li>
+                  </ul>                  
+              </nav>
+            </div>
+
+            <div class="menu" ng-cloak>
+              <ul ng-if="$global.user">   
+                    <li class="languages">
+                      <span class="l-en" ng-class="{active:enLangActive}" directlang ng-click="getLang('en_US')">EN</span>
+                      <span class="line">|</span>
+                      <span class="l-fr" ng-class="{active:frLangActive}" directlang ng-click="getLang('fr_FR')">FR</span>
+                    </li>
+                    <li class="dropdown border-wrap">
+                      <span href="#" class="dropdown-toggle add-dots" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span></span>
+                      <span class="user-icon user-def" ng-style="{ 'background-image':'url({{user_avatar}})'}"></span>{{$global.user.firstName}}</span>
+                      <ul class="dropdown-menu" ng-if="$global.user">
+                        <li><a href="#/profile">{{'MYPROFILE'|translate}}</a></li>
+                        <li><span ng-click="openAddDealModal()">{{'ADDDEAL'|translate}}</span></li>
+                        <li><a href="#/logout">{{'LOGOUT'|translate}}</a></li>
+                      </ul>
+                    </li>
+                    <li class="menu-bag" ng-click="myDeal()"><span class="bag"></span> <span>{{ 'DEALS' | translate }} </span><span class="dials-item" ng-if="countAll">({{countAll}})</span>
+                    </li>
+              </ul>
+              <ul ng-if="!$global.user">
+                <li class="languages">
+                  <span class="l-en" ng-class="{active:enLangActive}"directlang ng-click="getLang('en_US')">EN</span>
+                  <span class="line">|</span>
+                  <span class="l-fr" ng-class="{active:frLangActive}" directlang ng-click="getLang('fr_FR')">FR</span>
+                </li>
+                <li class="border-wrap" ng-click="openLoginModal()"><span>{{ 'SIGNUP' | translate}}</span><span class="user-icon user-def"></span>
+                </li>
+              </ul>
+            </div>
+    </header>
+    
+    <div ng-view></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/jquery.scrollbar/jquery.scrollbar.js"></script>
+    <script src="bower_components/ng-scrollbar/dist/ng-scrollbar.js"></script>
+    <script src="bower_components/intl-tel-input/build/js/intlTelInput.js"></script>
+    <script src="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+    <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="languages/en_US.js" type="text/javascript" charset="utf-8"></script>
+    <script src="languages/fr_FR.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/markerclusterer_packed.js"></script>
+    <script src="//maps.google.com/maps/api/js"></script>
+    <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/config.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/common.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/signup.js"></script>
+        <script src="scripts/services/fetchurl.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/logout.js"></script>
+        <script src="scripts/controllers/deals.js"></script>
+        <script src="scripts/services/login.js"></script>
+        <script src="scripts/services/signup.js"></script>
+        <script src="scripts/services/deals.js"></script>
+        <script src="scripts/services/category.js"></script>
+        <script src="scripts/services/url_config.js"></script>
+        <script src="scripts/directives/directfilteroption.js"></script>
+        <script src="scripts/directives/directfiltercate.js"></script>
+        <script src="scripts/directives/selectedfiltercategory.js"></script>
+        <script src="scripts/services/serializedata.js"></script>
+        <script src="scripts/directives/directreportdeal.js"></script>
+        <script src="scripts/directives/directclosereport.js"></script>
+        <script src="scripts/directives/directdealsocial.js"></script>
+        <script src="scripts/services/infinitescroll.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/services/profile.js"></script>
+        <script src="scripts/services/reviews.js"></script>
+        <script src="scripts/filters/appfilter.js"></script>
+        <script src="scripts/filters/datefilter.js"></script>
+        <script src="scripts/directives/starrating.js"></script>
+        <script src="scripts/directives/directupload.js"></script>
+        <script src="scripts/services/uploadimage.js"></script>
+        <script src="scripts/services/mydeal.js"></script>
+        <script src="scripts/controllers/term.js"></script>
+        <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/directives/directdealfilter.js"></script>
+        <script src="scripts/filters/filtermydeal.js"></script>
+        <script src="scripts/directives/resize.js"></script>
+        <script src="scripts/controllers/dealreport.js"></script>
+        <script src="scripts/services/filterdealfunc.js"></script>
+        <script src="scripts/directives/directlang.js"></script>
+        <script src="scripts/directives/phonenumbervalid.js"></script>
+        <script src="scripts/directives/passwordverify.js"></script>
+        <script src="scripts/services/fbservices.js"></script>
+        <script src="scripts/directives/mainfullscreen.js"></script>
+        <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/directives/fullsidebar.js"></script>
+        <script src="scripts/services/filereader.js"></script>
+        <script src="scripts/services/contact.js"></script>  
+        <script src="scripts/directives/addthistoolbox.js"></script>
+        <script src="scripts/directives/directfilternumber.js"></script>
+        <script src="scripts/filters/phoneformat.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

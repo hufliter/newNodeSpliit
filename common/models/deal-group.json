@@ -1,0 +1,53 @@
+{
+  "name": "DealGroup",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "idDeal": {
+      "type": "String",
+      "required": true
+    },
+    "groupNumber": {
+      "type": "Number",
+      "required": true
+    },
+    "status": {
+      "type": "Number",
+      "required": true
+    },
+    "concluded": {
+      "type": "Number",
+      "required": true
+    },
+    "reviewed": {
+      "type": "Number",
+      "required": true
+    },
+    "archived": {
+      "type": "Number",
+      "required": false
+    },
+    "requiredNbCust": {
+      "type": "Number",
+      "required": true
+    },
+    "currentNbCust": {
+      "type": "Number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

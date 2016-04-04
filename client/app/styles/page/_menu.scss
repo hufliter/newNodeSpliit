@@ -1,0 +1,554 @@
+.header{
+    height: 130px;
+    background-color: $color-green;
+    color: #fff;
+    min-width: 1024px;
+    .logo{
+      background: url(../images/logo@2x.png) center center no-repeat;
+      height: 60px;
+      width: 230px;
+      background-size: contain;
+      position: absolute;
+      top: 40px;
+      left: 4%;
+      @media (max-width: $screen-lg) {
+          height: 60px * $percent-lg;
+          width: 230px * $percent-lg;
+          top: 40px * $percent-lg
+      }
+      @media (max-width: $screen-md) {
+          height: 60px * $percent-md;
+          width: 230px * $percent-md;
+          top: 40px * $percent-md
+      }
+    }
+
+    .menu{
+      float: right;
+      >ul{
+        width: 100%;
+      
+      >li{
+        height: 130px;
+        position: relative;
+        padding: 50px 130px 0 50px; 
+        float: right;
+        width: 370px;
+        cursor: pointer;
+        background: $color-green;
+        text-align: left;
+        @media (max-width: $screen-lg) {
+          height: 130px * $percent-lg;
+          width: 370px * $percent-lg;
+          padding: 44px * $percent-lg 130px * $percent-lg 0 50px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+          height: 130px * $percent-md;
+          width: 370px * $percent-md;
+          padding: 44px * $percent-md 130px * $percent-md 0 50px * $percent-md;
+        }
+      }
+      .menu-bag{
+        text-align: left;
+        padding-left: 110px;
+        padding-right: 50px;
+        @media (max-width: $screen-lg) {
+          padding-left: 110px  * $percent-lg;
+          padding-right: 50px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+          padding-left: 110px * $percent-md;
+          padding-right: 50px * $percent-md;
+        }
+
+      }
+      .languages{
+        text-align: center;
+        width: 220px;
+        padding-left: 50px;
+        padding-right: 50px; 
+        span{
+          opacity: .4;
+          float: left;
+        }
+        .line {
+          opacity: 1;
+          margin-top: -2px;
+          margin-left: 3px;
+          margin-right: 3px;
+        }
+        .active{
+          opacity: 1;
+        }
+        @media (max-width: $screen-lg) {
+          padding-left: 50px  * $percent-lg;
+          padding-right: 50px * $percent-lg;
+          width: 220px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+          padding-left: 50px  * $percent-md;
+          padding-right: 50px * $percent-md;
+          width: 220px * $percent-md;
+        }  
+
+      }
+      .border-wrap{
+        border-left: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .bag{
+        position: absolute;
+        display: block;
+        width: 46px;
+        height: 46px;
+        background: url(../images/my_deals@2x.png);
+        background-size: cover;
+        top: 42px;
+        left: 50px;
+        margin-right: 10px;
+        @media (max-width: $screen-lg) {
+          width: 46px * $percent-lg;
+          height: 46px * $percent-lg;
+          top: 35px * $percent-lg;
+          left: 50px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+          width: 46px * $percent-md;
+          height: 46px * $percent-md;
+          top: 35px * $percent-md;
+          left: 50px * $percent-md;
+        }
+      }
+      .dropdown.open{
+          background: #3a7676;
+          border: none;
+      }
+      .dropdown-toggle{
+        height: 130px;
+        display: block;
+
+      }
+      .dropdown-menu{
+        border-radius: 0;
+        background: $color-green;
+        margin: 0;
+        padding: 30px 0;
+        border: none;
+        font-size: 30px;
+        width: 100%;
+        @media (max-width: $screen-lg) {
+            padding: 30px * $percent-lg 0;
+            font-size: 30px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+            padding: 30px * $percent-md 0;
+            font-size: 30px * $percent-md;
+        }
+        li{
+          position: relative;
+          height:50px;
+          margin: 10px 0;
+          padding-left: 50px;
+          color: rgba(255,255,255,.5);
+          width: 100%;
+          text-align: left;
+          a,span{
+            line-height: 50px;
+            @media (max-width: $screen-lg) {
+              line-height: 50px * $percent-lg;
+            }
+            @media (max-width: $screen-md) {
+              line-height: 50px * $percent-md;
+            }
+          }
+          &:hover{
+            background: transparent;
+            color: #fff;
+            &:before{
+              content: '';
+              display: block;
+              height: 50px;
+              width: 0px;
+              border-right: 7px  solid $color-yellow;
+              border-radius: 0 4px 4px 0;
+              position: absolute;
+              left: 0;
+              top: 0;
+              @media (max-width: $screen-lg) {
+                height: 50px * $percent-lg;
+                border-right: 7px * $percent-lg  solid $color-yellow;
+                border-radius: 0 4px * $percent-lg 4px * $percent-lg 0;
+              }
+              @media (max-width: $screen-md) {
+                height: 50px * $percent-md;
+                border-right: 7px * $percent-md  solid $color-yellow;
+                border-radius: 0 4px * $percent-md 4px * $percent-md 0;
+              }
+            }
+          }
+          @media (max-width: $screen-lg) {
+            height:50px * $percent-lg;
+            margin: 10px * $percent-lg 0;
+            padding-left: 50px * $percent-lg;
+          }
+          @media (max-width: $screen-md) {
+            height:50px * $percent-md;
+            margin: 10px * $percent-md 0;
+            padding-left: 50px * $percent-md;
+          }
+        }
+      }
+    }
+
+    }
+    .user-icon{
+      display: block;
+      position: absolute;
+      top: 30px;
+      right: 50px;  
+      width: 68px;
+      height: 68px;
+      border-radius: 100%;
+      border:  1px solid #6bc3c4;
+      background: no-repeat center center;
+      background-size: cover;
+      @media (max-width: $screen-lg) {
+        top: 30px * $percent-lg;
+        right: 50px * $percent-lg;  
+        width: 68px * $percent-lg;
+        height: 68px * $percent-lg;
+      }
+      @media (max-width: $screen-md) {
+        top: 30px * $percent-md;
+        right: 50px * $percent-md;  
+        width: 68px * $percent-md;
+        height: 68px * $percent-md;
+      }  
+    }
+    .user-def{
+      background-image: url(../images/no_pp@2x.png);
+    }
+    .icon-search{
+        display: block;
+        width: 46px;
+        height: 46px;
+        background: url(../images/magnifying_glass@2x.png) no-repeat center center;
+        position: absolute;
+        top: 15px;
+        left: -55px;
+        background-size: contain;
+        @media (max-width: $screen-lg) {
+          top: 15px * $percent-lg;
+          width: 46px * $percent-lg;
+          height: 46px * $percent-lg;
+          left: -55px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+          top: 15px * $percent-md;
+          width: 46px * $percent-md;
+          height: 46px * $percent-md;
+          left: -55px * $percent-md;
+        }
+    }
+    @media (max-width: $screen-lg) {
+      height: 130px * $percent-lg;
+    }
+    @media (max-width: $screen-md) {
+      height: 130px * $percent-md;
+    }
+}
+    .search{
+      float: left;
+      margin-top: 30px;
+      margin-left: 28%;
+      position: relative;
+      width: 420px;
+      text-align: center;
+      @media (max-width: $screen-lg) {
+          width: 420px * $percent-lg;
+          margin-top: 30px * $percent-lg;
+      }
+      @media (max-width: $screen-md) {
+          width: 420px * $percent-md;
+          margin-top: 30px * $percent-md;
+      }
+      .form-control{
+          height: 70px;
+          width: 100%;
+          border: none;
+          background-color: transparent;
+          border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+          color: #fff;
+          padding: 5px 15px;
+          box-shadow: none;
+          border-radius: 0px;
+          font-size: 30px;
+          @media (max-width: $screen-lg) {
+            height: 70px * $percent-lg;
+            padding: 5px 15px * $percent-lg;
+            font-size: 30px * $percent-lg;
+          }
+          @media (max-width: $screen-md) {
+            height: 70px * $percent-md;
+            padding: 5px 15px * $percent-md;
+            font-size: 30px * $percent-md;
+          }
+      }
+    }
+.header  nav{
+        position: absolute;
+        width: 100%;
+        left: -90px;
+        bottom: -560px;
+        width: 1000px;
+        height: 520px;
+        background-color: #26292e;
+        z-index: 999;
+        border-radius: 20px;
+        //overflow: hidden;
+        @media (max-width: $screen-lg) {
+          left: -90px * $percent-lg;
+          bottom: -560px * $percent-lg;
+          width: 1000px * $percent-lg;
+          height: 520px * $percent-lg;
+          border-radius: 20px * $percent-lg;
+        }
+        @media (max-width: $screen-md) {
+          left: -90px * $percent-md;
+          bottom: -560px * $percent-md;
+          width: 1000px * $percent-md;
+          height: 520px * $percent-md;
+        }
+        &:before{
+              content: '';
+              width: 60px;
+              height: 30px;
+              display: block;
+              position: absolute;
+              left: 80px;
+              top: -20px;
+              background: transparent url(../images/corner.png) center center no-repeat;
+              background-size: cover;
+              //transform: rotate(-45deg);
+              //border-radius: 10px;
+              @media (max-width: $screen-lg) {
+                 border-radius: 10px * $percent-lg;
+                width: 60px * $percent-lg;
+                height: 30px * $percent-lg;
+                left: 80px * $percent-lg;
+                top: -20px * $percent-lg;
+              }
+              @media (max-width: $screen-md) {
+                width: 60px * $percent-md;
+                height: 30px * $percent-md;
+                left: 80px * $percent-md;
+                top: -20px * $percent-md;
+                 border-radius: 10px * $percent-md;
+              } 
+        }
+      }  
+.search .scrolllist{
+            margin: 20px 0 0 0;
+            display: inline-block;
+            height: 470px;
+            width: 950px;
+            overflow-y: hidden;
+            @media (max-width: $screen-lg) {
+              margin: 20px * $percent-lg 0 0 0;
+                height: 470px * $percent-lg;
+                 width: 950px * $percent-lg;
+            }
+            @media (max-width: $screen-md) {
+              margin: 20px * $percent-md 0 0 0;
+                height: 470px * $percent-md;
+                 width: 950px * $percent-md;
+            }
+            .ngsb-wrap .ngsb-scrollbar{
+              .ngsb-thumb{
+                background: #565c66;
+                width: 12px;
+                @media (max-width: $screen-lg) {
+                    width: 12px * $percent-lg;
+                }
+                @media (max-width: $screen-md) {
+                  width: 12px * $percent-md;
+                }
+              }
+              .ngsb-track{
+                background: transparent;
+                  box-shadow: none;
+              } 
+          }        
+        } 
+.search li{
+              text-align: left;
+              height: 160px;
+              width: 740px;
+              font-weight: 600;
+              margin-left: 180px;
+              padding-top: 60px;
+              border-bottom: 1px solid #565c66;
+              position: relative;
+              @media (max-width: $screen-lg) {
+                height: 160px * $percent-lg;
+                width: 740px * $percent-lg;
+                margin-left: 180px * $percent-lg;
+                padding-top: 60px * $percent-lg;
+              }
+              @media (max-width: $screen-md) {
+                height: 160px * $percent-md;
+                width: 740px * $percent-md;
+                margin-left: 180px * $percent-md;
+                padding-top: 60px * $percent-md;
+              }
+              .result-search{
+                  font-size: 30px;
+                  @media (max-width: $screen-lg) {
+                      font-size: 30px * $percent-lg;
+                    }
+                    @media (max-width: $screen-md) {
+                      font-size: 30px * $percent-md;
+                    }
+              }
+              p{
+                  font-size: 22px;
+                  margin-top: 15px;
+                  font-weight: 300px;
+                  @media (max-width: $screen-lg) {
+                      font-size: 22px * $percent-lg;
+                      margin-top: 15px * $percent-lg;
+                    }
+                  @media (max-width: $screen-md) {
+                      font-size: 22px * $percent-md;
+                      margin-top: 15px * $percent-md;
+                    }
+              }
+              span{
+                font-weight: 100;
+              }
+              &.result-bag{
+                height: 180px;
+                &:before{
+                    content: '';
+                    width: 40px;
+                    height: 54px;
+                    display: block;
+                    position: absolute;
+                    left: -110px;
+                    top: 65px;
+                    background: url(../images/bag@2x.png) no-repeat center center;
+                    background-size: cover;
+                    @media (max-width: $screen-lg) {
+                      width: 40px * $percent-lg;
+                      height: 54px * $percent-lg;
+                      left: -110px * $percent-lg;
+                      top: 65px * $percent-lg;
+                    }
+                    @media (max-width: $screen-md) {
+                      width: 40px * $percent-md;
+                      height: 54px * $percent-md;
+                      left: -110px * $percent-md;
+                      top: 65px * $percent-md;
+                    } 
+                }
+                @media (max-width: $screen-lg) {
+                  height: 180px* $percent-lg;
+                }
+                @media (max-width: $screen-md) {
+                  height: 180px * $percent-md;
+                }              
+              
+                @media (max-width: $screen-lg) {
+                    height: 180px * $percent-lg;
+                    }
+                @media (max-width: $screen-md) {
+                    height: 180px * $percent-md;
+                    } 
+              }
+              &.result-search-item{
+               // padding-right: 120px;
+                  &:before{
+                    content: '';
+                    width: 34px;
+                    height: 34px;
+                    display: block;
+                    position: absolute;
+                    left: -110px;
+                    top: 62px;
+                    background: url(../images/magnifying_glass_search@2x.png) no-repeat center center;
+                    background-size: cover;
+                    @media (max-width: $screen-lg) {
+                      width: 34px * $percent-lg;
+                      height: 34px * $percent-lg;
+                      left: -110px * $percent-lg;
+                      top: 62px * $percent-lg;
+                    }
+                    @media (max-width: $screen-md) {
+                      width: 34px * $percent-md;
+                      height: 34px * $percent-md;
+                      left: -110px * $percent-md;
+                      top: 62px * $percent-md;
+                    }
+                  }
+                &:after{
+                    content: '';
+                    width: 20px;
+                    height: 30px;
+                    display: block;
+                    position: absolute;
+                    right: 30px;
+                    top: 62px;
+                    background: url(../images/arrow@2x.png) no-repeat center center;
+                    background-size: cover;
+                    @media (max-width: $screen-lg) {
+                      width: 20px * $percent-lg;
+                      height: 30px * $percent-lg;
+                      right: 30px * $percent-lg;
+                      top: 62px * $percent-lg;
+                    }
+                    @media (max-width: $screen-md) {
+                      width: 20px * $percent-md;
+                      height: 30px * $percent-md;
+                      right: 30px * $percent-md;
+                      top: 62px * $percent-md;
+                    }
+                }
+                @media (max-width: $screen-lg) {
+                    //  padding-right: 120px * $percent-lg;
+                }
+                @media (max-width: $screen-md) {
+                    //  padding-right: 120px * $percent-md;
+                }               
+              } 
+
+}   
+
+.dropdown-menu {
+  > li {
+    > a {
+      background: inherit;
+      color: inherit;
+      padding: inherit;  
+      padding-left: 0;
+      &:hover{
+        background: none;
+        color: inherit;
+      }
+    }
+  }
+}               
+.add-dots{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 39px !important;
+  width: 188px;
+  @media (max-width: $screen-lg) {
+    height: 28px !important;
+    width: 131px; 
+  }
+  @media (max-width: $screen-md) {
+    height: 20px !important;
+    width: 93px;  
+  }  
+}
